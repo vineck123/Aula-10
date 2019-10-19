@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=”UTF-8” />
+    <title>Hearts of Iron IV Fans</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+
+<body style="background-color:dimgrey;">
+    <div class="collapsible-menu">
+        <input type="checkbox" id="menu">
+        <label for="menu">Menu</label>
+        <div class="menu-content">
+            <ul>
+                <li>
+                    <a href="index.html"></a>Início</li>
+                <li>
+                    <a href="pages/artigos.html"></a>Artigos</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cabecalho">
+        <img class="alinhar-imagem" src="imagens/hoi-base-game-logo.png" alt="">
+    </div>
+    <div style="text-align:center;">
+        <p style="font-size:50px;">Implementações Necessárias</p>
+        <input type="text" id="implementacao" placeholder="Implementação">
+        <input type="text" id="prioridade" placeholder="Prioridade">
+        <button id="add">Adicionar</button>
+        <table id="baseTable" style="margin-top:10px;" align="center">
+            <tr>
+                <th>Implementação</th>
+                <th>Prioridade</th>
+                <th>Ação</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" ref="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    let qt = 0;
+    $('#add').click(() => {
+        if ($('#implementacao').val() == '' || $('#prioridade').val() == '') {
+            alert('É preciso informar todos os valores.');
+            return;
+        }
+        let base = document.getElementById('baseTable')
+        let tr = document.createElement('tr');
+        let td1 = document.createElement('td')
+        let td2 = document.createElement('td')
+        let td3 = document.createElement('td')
+        td1.textContent = $('#implementacao').val() != '' && $('#implementacao').val()
+        td2.textContent = $('#prioridade').val() != '' && $('#prioridade').val()
+        let remover = document.createElement('button')
+        remover.addEventListener('click', function () {
+            $(this).parent().parent().remove();
+        })
+        remover.textContent = 'Remover'
+        td3.appendChild(remover)
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        base.appendChild(tr)
+        qt++;
+
+        $('input').val('')
+    })
+</script>
